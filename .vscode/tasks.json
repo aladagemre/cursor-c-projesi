@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build C Program",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Compile the current C file with debug symbols"
+        },
+        {
+            "label": "Build and Run C Program",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "&&",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "group": "build",
+            "problemMatcher": ["$gcc"],
+            "detail": "Compile and run the current C file"
+        },
+        {
+            "label": "Clean Build Artifacts",
+            "type": "shell",
+            "command": "find",
+            "args": [
+                ".",
+                "-type", "f",
+                "-perm", "+111",
+                "!",
+                "-name", "*.sh",
+                "!",
+                "-path", "*/.*",
+                "-delete"
+            ],
+            "problemMatcher": [],
+            "detail": "Remove compiled executables"
+        }
+    ]
+}
