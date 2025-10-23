@@ -16,26 +16,29 @@
                 "isDefault": true
             },
             "problemMatcher": ["$gcc"],
-            "detail": "Compile the current C file with debug symbols"
+            "detail": "Compile the current C file with debug symbols",
+            "windows": {
+                "args": [
+                    "-g",
+                    "${file}",
+                    "-o",
+                    "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                ]
+            }
         },
         {
             "label": "Build and Run C Program",
             "type": "shell",
-            "command": "gcc",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
-                "&&",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
+            "command": "gcc -g ${file} -o ${fileDirname}/${fileBasenameNoExtension} && ${fileDirname}/${fileBasenameNoExtension}",
             "group": "build",
             "problemMatcher": ["$gcc"],
-            "detail": "Compile and run the current C file"
+            "detail": "Compile and run the current C file",
+            "windows": {
+                "command": "gcc -g ${file} -o ${fileDirname}\\${fileBasenameNoExtension}.exe && ${fileDirname}\\${fileBasenameNoExtension}.exe"
+            }
         },
         {
-            "label": "Clean Build Artifacts",
+            "label": "Clean Build Artifacts (macOS/Linux)",
             "type": "shell",
             "command": "find",
             "args": [
@@ -49,7 +52,18 @@
                 "-delete"
             ],
             "problemMatcher": [],
-            "detail": "Remove compiled executables"
+            "detail": "Remove compiled executables (Unix)"
+        },
+        {
+            "label": "Clean Build Artifacts (Windows)",
+            "type": "shell",
+            "command": "del",
+            "args": [
+                "/S",
+                "*.exe"
+            ],
+            "problemMatcher": [],
+            "detail": "Remove compiled executables (Windows)"
         }
     ]
 }
