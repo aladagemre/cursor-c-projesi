@@ -1,6 +1,6 @@
-# C Projesi
+# Cursor ile C Proje Şablonu
 
-VS Code ile C programlama için yapılandırılmış çalışma ortamı.
+Cursor (VS Code)  ile C programlama için yapılandırılmış çalışma ortamı.
 
 ## Gereksinimler
 
